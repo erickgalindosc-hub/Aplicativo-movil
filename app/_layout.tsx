@@ -1,56 +1,88 @@
-import { useFonts } from 'expo-font';
-import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
 
-import { useColorScheme } from '@/components/useColorScheme';
-
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router';
-
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  anchor: '(tabs)',
-};
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+import React from 'react';
+import { Tabs } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import { StatusBar } from 'expo-status-bar';
 
 export default function RootLayout() {
-  const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
-  return <RootLayoutNav />;
-}
-
-function RootLayoutNav() {
-  const colorScheme = useColorScheme();
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
-    </ThemeProvider>
+    <>
+      <StatusBar style="dark" />
+
+      <Tabs
+        screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: '#F97316',
+          tabBarInactiveTintColor: '#94A3B8',
+          tabBarStyle: {
+            backgroundColor: '#FFFFFF',
+            height: 65,
+            paddingBottom: 8,
+            paddingTop: 8,
+            borderTopColor: '#E2E8F0',
+          },
+          tabBarLabelStyle: {
+            fontSize: 11,
+            fontWeight: '600',
+          },
+        }}
+      >
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: 'Inicio',
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons
+                name="person-outline"
+                size={size}
+                color={String(color)}
+              />
+            ),
+          }}
+        />
+
+        <Tabs.Screen
+          name="estudios"
+          options={{
+            title: 'Estudios',
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons
+                name="school-outline"
+                size={size}
+                color={String(color)}
+              />
+            ),
+          }}
+        />
+
+        <Tabs.Screen
+          name="experiencia"
+          options={{
+            title: 'Experiencia',
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons
+                name="briefcase-outline"
+                size={size}
+                color={String(color)}
+              />
+            ),
+          }}
+        />
+
+        <Tabs.Screen
+          name="hobbies"
+          options={{
+            title: 'Hobbies',
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons
+                name="game-controller-outline"
+                size={size}
+                color={String(color)}
+              />
+            ),
+          }}
+        />
+      </Tabs>
+    </>
   );
 }
