@@ -7,7 +7,7 @@ const Inicio = () => {
     <ScrollView style={estilos.contenedor} contentContainerStyle={estilos.contenido}>
       <View style={estilos.avatarContenedor}>
         <Ionicons name="person-circle" size={100} color="#2563eb" />
-        <Text style={estilos.nombre}>Pepito Pérez Gómez</Text>
+        <Text style={estilos.nombre}>Erick Santiago Galindo</Text>
         <Text style={estilos.profesion}>Tecnólogo en ADSO</Text>
       </View>
 
@@ -53,7 +53,7 @@ const Inicio = () => {
           nombreIcono="logo-facebook"
           colorBoton="#1877F2"
           onPress={() =>
-            Alert.alert("Facebook", "https://www.facebook.com/pepito.perez")
+            Alert.alert("Facebook", "https://www.facebook.com/erick.parra.501296/?locale=es_LA")
           }
         />
 
@@ -62,7 +62,7 @@ const Inicio = () => {
           nombreIcono="logo-instagram"
           colorBoton="#E1306C"
           onPress={() =>
-            Alert.alert("Instagram", "https://www.instagram.com/pepito.perez")
+            Alert.alert("Instagram", "https://www.instagram.com/ich_mir._?fbclid=IwY2xjawVj-WRleHRuA2FlbQIxMABwZG9mBWJyaWQRMHNvdXpGVXdGdFR5VEVKbGxzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEfX4X3PKauz3idFr6VRsQ73ZllErgyS7clLvnuPQZReD4lr0X6LCjf5cbtDVE_aem_ZPoaFTZRAQHh-ELRScc7Ng")
           }
         />
 

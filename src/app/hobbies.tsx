@@ -38,7 +38,7 @@ const Hobbies = () => {
     <ScrollView style={estilos.contenedor} contentContainerStyle={estilos.contenido}>
       <View style={estilos.encabezado}>
         <Ionicons name="heart" size={80} color="#2563eb" />
-        <Text style={estilos.nombre}>Pepito Pérez Gómez</Text>
+        <Text style={estilos.nombre}>Erick Santiago Galindo</Text>
         <Text style={estilos.subtitulo}>Intereses / Hobbies</Text>
       </View>
 
