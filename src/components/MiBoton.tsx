@@ -1,53 +1,47 @@
+import { Ionicons } from "@expo/vector-icons";
+import { Pressable, StyleSheet, Text } from "react-native";
 
-import React from 'react';
-import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  ViewStyle,
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-
-type MiBotonProps = {
-  titulo: string;
-  icono: keyof typeof Ionicons.glyphMap;
+type Props = {
+  textoBoton: string;
+  nombreIcono: keyof typeof Ionicons.glyphMap;
+  colorBoton?: string;
   onPress: () => void;
-  estilo?: ViewStyle;
 };
 
-export default function MiBoton({
-  titulo,
-  icono,
+const MiBoton = ({
+  textoBoton,
+  nombreIcono,
+  colorBoton = "#2563eb",
   onPress,
-  estilo,
-}: MiBotonProps) {
+}: Props) => {
   return (
-    <TouchableOpacity
-      style={[styles.boton, estilo]}
+    <Pressable
       onPress={onPress}
-      activeOpacity={0.75}
+      style={({ pressed }) => [
+        estilos.boton,
+        { backgroundColor: colorBoton },
+        pressed && estilos.presionado,
+      ]}
     >
-      <Ionicons name={icono} size={20} color="#FFFFFF" />
-      <Text style={styles.texto}>{titulo}</Text>
-    </TouchableOpacity>
+      <Ionicons name={nombreIcono} size={20} color="#fff" />
+      <Text style={estilos.texto}>{textoBoton}</Text>
+    </Pressable>
   );
-}
+};
 
-const styles = StyleSheet.create({
+export default MiBoton;
+
+const estilos = StyleSheet.create({
   boton: {
-    backgroundColor: '#F97316',
-    paddingVertical: 14,
-    paddingHorizontal: 18,
-    borderRadius: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 10,
-    marginVertical: 5,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+    marginBottom: 10,
+    gap: 8,
   },
-  texto: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
+  presionado: { opacity: 0.7 },
+  texto: { color: "#fff", fontSize: 15, fontWeight: "bold" },
 });

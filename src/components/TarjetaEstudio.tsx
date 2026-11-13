@@ -1,114 +1,50 @@
+import { StyleSheet, Text, View } from "react-native";
 
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-
-type TarjetaEstudioProps = {
+type Props = {
   titulo: string;
   institucion: string;
-  periodo: string;
-  descripcion: string;
+  anio: number;
   enCurso: boolean;
 };
 
-export default function TarjetaEstudio({
-  titulo,
-  institucion,
-  periodo,
-  descripcion,
-  enCurso,
-}: TarjetaEstudioProps) {
+const TarjetaEstudio = ({ titulo, institucion, anio, enCurso }: Props) => {
   return (
-    <View style={[
-      styles.tarjeta,
-      enCurso && styles.tarjetaEnCurso
-    ]}>
-      <View style={styles.encabezado}>
-        <View style={styles.icono}>
-          <Ionicons
-            name="school-outline"
-            size={25}
-            color="#F97316"
-          />
-        </View>
+    <View style={[estilos.tarjeta, enCurso ? estilos.enCurso : estilos.finalizado]}>
+      <Text style={estilos.titulo}>{titulo}</Text>
 
-        {enCurso && (
-          <View style={styles.insignia}>
-            <Text style={styles.textoInsignia}>En Curso</Text>
-          </View>
-        )}
-      </View>
+      {enCurso && <Text style={estilos.badge}>En Curso</Text>}
 
-      <Text style={styles.titulo}>{titulo}</Text>
-      <Text style={styles.institucion}>{institucion}</Text>
-
-      <Text style={styles.periodo}>{periodo}</Text>
-
-      <Text style={styles.descripcion}>{descripcion}</Text>
+      <Text style={estilos.subtitulo}>{institucion}</Text>
+      <Text style={estilos.anio}>{anio}</Text>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
+export default TarjetaEstudio;
+
+const estilos = StyleSheet.create({
   tarjeta: {
-    backgroundColor: '#FFFFFF',
-    padding: 18,
-    borderRadius: 16,
-    marginBottom: 15,
+    padding: 16,
+    borderRadius: 10,
+    marginVertical: 8,
     borderWidth: 1,
-    borderColor: '#E2E8F0',
   },
-  tarjetaEnCurso: {
-    backgroundColor: '#FFF7ED',
-    borderColor: '#F97316',
-    borderWidth: 2,
-  },
-  encabezado: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  icono: {
-    width: 45,
-    height: 45,
-    borderRadius: 12,
-    backgroundColor: '#FFF1E6',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  insignia: {
-    backgroundColor: '#7C3AED',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 20,
-  },
-  textoInsignia: {
-    color: '#FFFFFF',
-    fontSize: 11,
-    fontWeight: 'bold',
-  },
-  titulo: {
-    color: '#172554',
-    fontSize: 17,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  institucion: {
-    color: '#475569',
-    fontSize: 14,
-    fontWeight: '600',
-  },
-  periodo: {
-    color: '#F97316',
+  finalizado: { backgroundColor: "#ffffff", borderColor: "#ccc" },
+  enCurso: { backgroundColor: "#eef2ff", borderColor: "#6366f1" },
+  titulo: { fontSize: 16, fontWeight: "bold" },
+  subtitulo: { fontSize: 14, color: "#555" },
+  anio: { fontSize: 12, color: "#888" },
+  // RETO: cápsula morada con texto blanco
+  badge: {
+    alignSelf: "flex-start",
+    backgroundColor: "#7c3aed",
+    color: "#ffffff",
+    fontWeight: "bold",
     fontSize: 12,
-    fontWeight: 'bold',
-    marginTop: 8,
-  },
-  descripcion: {
-    color: '#64748B',
-    fontSize: 13,
-    marginTop: 10,
-    lineHeight: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 3,
+    borderRadius: 999,
+    overflow: "hidden",
+    marginVertical: 4,
   },
 });

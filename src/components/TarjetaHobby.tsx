@@ -1,82 +1,54 @@
-
-import React from 'react';
-import {
-  TouchableOpacity,
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 type Props = {
-  titulo: string;
-  descripcion: string;
+  nombre: string;
   icono: keyof typeof Ionicons.glyphMap;
+  descripcion: string;
   onPress: () => void;
 };
 
-export default function TarjetaHobby({
-  titulo,
-  descripcion,
-  icono,
-  onPress,
-}: Props) {
+const TarjetaHobby = ({ nombre, icono, descripcion, onPress }: Props) => {
   return (
-    <TouchableOpacity
-      style={styles.tarjeta}
-      activeOpacity={0.75}
+    <Pressable
       onPress={onPress}
+      style={({ pressed }) => [estilos.tarjeta, pressed && estilos.presionada]}
     >
-      <View style={styles.icono}>
-        <Ionicons name={icono} size={27} color="#F97316" />
+      <View style={estilos.iconoContenedor}>
+        <Ionicons name={icono} size={28} color="#2563eb" />
       </View>
-
-      <View style={styles.contenido}>
-        <Text style={styles.titulo}>{titulo}</Text>
-        <Text style={styles.descripcion}>{descripcion}</Text>
-        <Text style={styles.detalle}>Toca para conocer más →</Text>
+      <View style={estilos.textos}>
+        <Text style={estilos.nombre}>{nombre}</Text>
+        <Text style={estilos.descripcion}>{descripcion}</Text>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
-}
+};
 
-const styles = StyleSheet.create({
+export default TarjetaHobby;
+
+const estilos = StyleSheet.create({
   tarjeta: {
-    flexDirection: 'row',
-    backgroundColor: '#FFFFFF',
-    padding: 17,
-    borderRadius: 16,
-    marginBottom: 14,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#ffffff",
+    padding: 16,
+    borderRadius: 10,
+    marginVertical: 8,
     borderWidth: 1,
-    borderColor: '#E2E8F0',
-    alignItems: 'center',
+    borderColor: "#ccc",
+    gap: 14,
   },
-  icono: {
-    width: 55,
-    height: 55,
-    borderRadius: 15,
-    backgroundColor: '#FFF1E6',
-    justifyContent: 'center',
-    alignItems: 'center',
+  presionada: { opacity: 0.7 },
+  iconoContenedor: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: "#eef2ff",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  contenido: {
-    flex: 1,
-    marginLeft: 14,
-  },
-  titulo: {
-    fontSize: 16,
-    color: '#172554',
-    fontWeight: 'bold',
-  },
-  descripcion: {
-    color: '#64748B',
-    fontSize: 12,
-    marginTop: 5,
-  },
-  detalle: {
-    color: '#F97316',
-    fontSize: 11,
-    fontWeight: 'bold',
-    marginTop: 8,
-  },
+  textos: { flex: 1 },
+  nombre: { fontSize: 16, fontWeight: "bold", color: "#0f172a" },
+  descripcion: { fontSize: 13, color: "#475569" },
 });
