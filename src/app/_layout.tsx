@@ -1,68 +1,101 @@
+
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 
+const COLORS = {
+  background: "#101827",
+  card: "#1B2940",
+  orange: "#FF8C00",
+  muted: "#9AA8BC",
+  border: "#2A3A53",
+};
+
 export default function Layout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: "#2563eb" }}>
-      {/* Pestaña de Inicio */}
+    <Tabs
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: COLORS.background,
+        },
+        headerTintColor: "#F7F8FA",
+        headerTitleStyle: {
+          fontWeight: "800",
+          fontSize: 17,
+        },
+        headerShadowVisible: false,
+
+        tabBarStyle: {
+          backgroundColor: COLORS.card,
+          borderTopColor: COLORS.border,
+          borderTopWidth: 1,
+          height: 68,
+          paddingTop: 8,
+          paddingBottom: 8,
+        },
+
+        tabBarActiveTintColor: COLORS.orange,
+        tabBarInactiveTintColor: COLORS.muted,
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: "700",
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
           title: "Inicio",
-          headerTitle: "Datos Personales",
+          headerTitle: "Mi portafolio",
           tabBarIcon: ({ focused, size }) => (
             <Ionicons
-              name={focused ? "person" : "person-outline"}
+              name={focused ? "home" : "home-outline"}
               size={size}
-              color={focused ? "#2563eb" : "#64748b"}
+              color={focused ? COLORS.orange : COLORS.muted}
             />
           ),
         }}
       />
 
-      {/* Pestaña de Estudios */}
       <Tabs.Screen
         name="estudios"
         options={{
           title: "Estudios",
-          headerTitle: "Formación Académica",
+          headerTitle: "Formación académica",
           tabBarIcon: ({ focused, size }) => (
             <Ionicons
               name={focused ? "school" : "school-outline"}
               size={size}
-              color={focused ? "#2563eb" : "#64748b"}
+              color={focused ? COLORS.orange : COLORS.muted}
             />
           ),
         }}
       />
 
-      {/* Pestaña de Experiencia */}
       <Tabs.Screen
         name="experiencia"
         options={{
           title: "Experiencia",
-          headerTitle: "Experiencia Laboral",
+          headerTitle: "Experiencia y proyectos",
           tabBarIcon: ({ focused, size }) => (
             <Ionicons
               name={focused ? "briefcase" : "briefcase-outline"}
               size={size}
-              color={focused ? "#2563eb" : "#64748b"}
+              color={focused ? COLORS.orange : COLORS.muted}
             />
           ),
         }}
       />
 
-      {/* Pestaña de Hobbies */}
       <Tabs.Screen
         name="hobbies"
         options={{
-          title: "Hobbies",
-          headerTitle: "Intereses / Hobbies",
+          title: "Intereses",
+          headerTitle: "Intereses personales",
           tabBarIcon: ({ focused, size }) => (
             <Ionicons
               name={focused ? "heart" : "heart-outline"}
               size={size}
-              color={focused ? "#2563eb" : "#64748b"}
+              color={focused ? COLORS.orange : COLORS.muted}
             />
           ),
         }}
